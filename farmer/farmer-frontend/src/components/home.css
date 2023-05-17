@@ -1,0 +1,29 @@
+.carousel-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .carousel {
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .carousel .carousel-inner {
+    display: flex;
+  }
+  
+  .carousel .carousel-inner > div {
+    flex: 0 0 calc(100% / 3);
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .carousel .carousel-inner img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .carousel button {
+    margin-right: 10px;
+  }
+  

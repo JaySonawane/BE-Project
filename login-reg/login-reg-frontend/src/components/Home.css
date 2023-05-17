@@ -1,0 +1,29 @@
+div img {
+    height: 500px;
+    width: 98%;
+    margin-bottom: 50px;
+}
+
+body {
+    background-image: url('./images/img2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.footer.segment {
+    padding: 25px 15px;
+    margin-top: auto;
+  }
+
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+  }
+  
