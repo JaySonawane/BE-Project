@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import './login.css';
 const Login = () => {
 
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const [user, setUser] = useState({
         email: '',
-        password: ''
+        password: '',
+        role: ''
     });
 
     const handleInputChange = (event) => {
@@ -18,33 +19,26 @@ const Login = () => {
         })
     }
 
+    const handleRoleChange = (event) => {
+        const { value } = event.target;
+        setUser((prevUser) => ({
+            ...prevUser,
+            role: value,
+        }));
+    };
+
     const loginUser = async (e) => {
         e.preventDefault();
+        let url = '';
 
-
-        //const { email, password } = user;
-
-
-        //send data from frontend to server
-        /*
-        const res= await fetch("/sigin",{
-            method: 'POST',
-            headers: {
-                "Content-type":"application/json"
-            },
-            body: JSON.stringify({email,password})
-        });
-
-        //get response from server
-        const data=res.json();
-        if(data.status===422 || !data){
-            window.alert("Invalid Credentials");
-        }else{
-            window.alert("Login Successful!");
-            navigate('/');
+        if (user.role === 'farmer') {
+            url = 'http://localhost:5000/farmerSignup'; // Replace with the farmer signin route
+        } else if (user.role === 'exporter') {
+            url = 'http://localhost:5000/exporterSignup'; // Replace with the exporter sigin route
         }
-        */
-        axios.post('http://localhost:5000/signin', user)
+
+
+        axios.post(url, user)
             .then(response => {
                 window.alert("Login Succesful");
                 //navigate('/');
@@ -66,7 +60,7 @@ const Login = () => {
                 console.error(error.config);
             });
 
-            
+
     }
 
     return (
@@ -86,6 +80,16 @@ const Login = () => {
                             <input name="password" value={user.password} type="password" placeholder="Password" onChange={handleInputChange} />
                             <i aria-hidden="true" className="lock icon"></i>
                         </div>
+
+                    </div>
+                    <div className="field">
+                        <label>Role</label>
+
+                        <select value={user.role} onChange={handleRoleChange}>
+                            <option value="">--Select User Type--</option>
+                            <option value="farmer">Farmer</option>
+                            <option value="exporter">Exporter</option>
+                        </select>
 
                     </div>
 

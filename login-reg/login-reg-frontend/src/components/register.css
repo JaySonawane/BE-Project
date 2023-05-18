@@ -1,3 +1,7 @@
 .form-card {
     padding: 20px;
 }
+
+.custom-width {
+    width: 2000px;
+}
